@@ -8,7 +8,7 @@ const root = ReactDOM.createRoot(
 );
 
 root.render(
-  <BrowserRouter> 
+  <BrowserRouter basename="/kinopoisk"> 
     <App />
   </BrowserRouter> 
 );
