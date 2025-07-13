@@ -17,6 +17,7 @@ const MovieDetails = () => {
   const { id } = useParams();
   const [movie, setMovie] = useState<Movie | null>(null);
   const [loading, setLoading] = useState(true);
+  
   const goBack = () => {
     window.history.back();
   };

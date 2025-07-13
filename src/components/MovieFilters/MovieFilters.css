@@ -152,7 +152,13 @@
   margin: auto 0;
 }
 
-.movie-filters__apply-btn {
+
+.movie-filters__buttons {
+  display: flex;
+  gap: 10px;
+}
+
+.movie-filters__btn {
   margin-top: 1rem;
   font-weight: 500;
   padding: 10px 16px;
