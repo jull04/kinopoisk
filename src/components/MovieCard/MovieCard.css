@@ -1,4 +1,4 @@
-.movie-card {
+.card {
   width: 225px;
   display: flex;
   flex-direction: column;
@@ -6,11 +6,11 @@
   border-radius: 10px;
 }
 
-.movie-card:hover {
+.card:hover {
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
 }
 
-.movie-card__link {
+.card__link {
   color: white;
   text-decoration: none;
 }
@@ -38,14 +38,14 @@
   margin: 5px auto;
 }
 
-.movie-card img {
+.card__img {
   width: 100%;
   min-height: 337px;
   object-fit: cover;
   border-radius: 10px 10px 0 0;
 }
 
-.heart-btn {
+.card__heart-btn {
   position: absolute;
   top: 10px;
   right: 10px;
@@ -60,14 +60,14 @@
   background-size: cover;
 }
 
-.heart-btn:hover {
+.card__heart-btn:hover {
   opacity: 0.8;
 }
 
-.heart-btn_active {
+.card__heart-btn_active {
   background-image: url(../../images/like-active.svg);
 }
 
-.heart-btn_active:hover {
+.card__heart-btn_active:hover {
   opacity: 0.8;
 }

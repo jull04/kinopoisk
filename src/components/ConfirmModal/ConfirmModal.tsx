@@ -19,19 +19,19 @@ const ConfirmModal = ({ open, onConfirm, onCancel, title }: ConfirmModalProps) =
 
   return (
     <div
-      className={`modal-overlay ${open ? 'open' : ''}`}
+      className={`modal__overlay ${open ? 'modal__overlay_open' : ''}`}
     >
       <div className="modal">
         <button
           type="button"
-          className="popup__close"
+          className="modal__button-close"
           aria-label="Закрыть"
           onClick={onCancel}
         />
-        <h3 className="modal-title">{displayTitle}</h3>
-        <div className="modal-buttons">
-          <button onClick={onConfirm}>Да</button>
-          <button onClick={onCancel}>Отмена</button>
+        <h3 className="modal__title">{displayTitle}</h3>
+        <div className="modal__buttons">
+          <button className="modal__button modal__button-confirm" onClick={onConfirm}>Да</button>
+          <button className="modal__button modal__button-cancel" onClick={onCancel}>Отмена</button>
         </div>
       </div>
     </div>

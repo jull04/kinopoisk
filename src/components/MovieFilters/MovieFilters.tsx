@@ -1,5 +1,5 @@
 import { useSearchParams } from 'react-router-dom';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import './MovieFilters.css';
 
 const genresList = ['драма', 'комедия', 'боевик', 'триллер', 'фантастика'];
@@ -39,23 +39,24 @@ const MovieFilters = () => {
 
   return (
     <>
-      <button className="filters-toggle-btn" onClick={() => setShowPopup(true)}>
+      <button className="movie-filters__toggle-btn" onClick={() => setShowPopup(true)}>
         Фильтры
       </button>
 
-      <div className={`movie-filters ${showPopup ? 'open' : ''}`}>
+      <div className={`movie-filters ${showPopup ? 'movie-filters_open' : ''}`}>
         <div className="movie-filters__content">
           <button
-            className="filters-close-btn"
+            className="movie-filters__close-btn"
             onClick={() => setShowPopup(false)}
             aria-label="Закрыть"
           />
 
           <fieldset className="movie-filters__genres">
-            <legend>Жанры</legend>
+            <legend className="movie-filters__title">Жанры</legend>
             {genresList.map((g) => (
-              <label key={g}>
+              <label className="movie-filters__label" key={g}>
                 <input
+                  className="movie-filters__input-checkbox" 
                   type="checkbox"
                   checked={localGenres.includes(g)}
                   onChange={() => toggleGenre(g)}
@@ -66,8 +67,9 @@ const MovieFilters = () => {
           </fieldset>
 
           <fieldset className="movie-filters__rating">
-            <legend>Рейтинг</legend>
+            <legend className="movie-filters__title">Рейтинг</legend>
             <input
+              className="movie-filters__input-number" 
               type="number"
               value={localRating.min}
               min={1}
@@ -76,8 +78,9 @@ const MovieFilters = () => {
                 setLocalRating({ ...localRating, min: +e.target.value })
               }
             />
-            <span className="movie-filters-span">-</span>
+            <span className="movie-filters__span">-</span>
             <input
+              className="movie-filters__input-number" 
               type="number"
               value={localRating.max}
               min={1}
@@ -89,8 +92,9 @@ const MovieFilters = () => {
           </fieldset>
 
           <fieldset className="movie-filters__year">
-            <legend>Год выпуска</legend>
+            <legend className="movie-filters__title">Год выпуска</legend>
             <input
+              className="movie-filters__input-number" 
               type="number"
               value={localYear.from}
               min={1990}
@@ -99,8 +103,9 @@ const MovieFilters = () => {
                 setLocalYear({ ...localYear, from: +e.target.value })
               }
             />
-            <span className="movie-filters-span">-</span>
+            <span className="movie-filters__span">-</span>
             <input
+              className="movie-filters__input-number" 
               type="number"
               value={localYear.to}
               min={1990}
@@ -111,7 +116,7 @@ const MovieFilters = () => {
             />
           </fieldset>
 
-          <button className="filters-apply-btn" onClick={applyFilters}>
+          <button className="movie-filters__apply-btn" onClick={applyFilters}>
             Применить
           </button>
         </div>

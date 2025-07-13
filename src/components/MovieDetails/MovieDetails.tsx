@@ -1,6 +1,6 @@
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { kinopoiskApi } from "../../api/kinopoiskApi";
+import { kinopoiskApi } from "../../utils/kinopoiskApi";
 import "./MovieDetails.css";
 import Preloader from "../Preloader/Preloader";
 

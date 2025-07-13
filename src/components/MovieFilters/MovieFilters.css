@@ -1,4 +1,4 @@
-.filters-toggle-btn {
+.movie-filters__toggle-btn {
   font-weight: 500;
   margin: 40px 140px 0 auto;
   padding: 0.6rem 1.2rem;
@@ -10,12 +10,12 @@
 }
 
 @media screen and (max-width: 767px) {
-  .filters-toggle-btn {
+  .movie-filters__toggle-btn {
     margin: 40px auto 0;
   }
 }
 
-.filters-close-btn {
+.movie-filters__close-btn {
   top: -45px;
   right: -30px;
   position: absolute;
@@ -30,7 +30,7 @@
 }
 
 @media screen and (max-width: 767px) {
-  .filters-close-btn {
+  .movie-filters__close-btn {
     top: -45px;
     right: 10px !important;
     width: 25px;
@@ -73,7 +73,7 @@
   margin: 0;
 }
 
-.movie-filters.open {
+.movie-filters.movie-filters_open {
   opacity: 1;
   display: flex;
   visibility: visible;
@@ -91,7 +91,7 @@
   gap: 20px;
 }
 
-.filters-toggle-btn {
+.movie-filters__toggle-btn {
   display: block;
 }
 
@@ -103,7 +103,7 @@
   margin: 0;
 }
 
-.movie-filters legend {
+.movie-filters__title {
   font-weight: 600;
   font-size: 16px;
   margin-bottom: 10px;
@@ -120,7 +120,7 @@
   font-weight: 500;
 }
 
-.movie-filters input[type="number"] {
+.movie-filters__input-number{
   width: 60px;
   padding: 5px 8px;
   font-size: 0.9rem;
@@ -129,7 +129,7 @@
   background-color: #fff;
 }
 
-.movie-filters input[type="checkbox"] {
+.movie-filters__input-checkbox {
   cursor: pointer;
 }
 
@@ -147,12 +147,12 @@
   flex-direction: column;
 }
 
-.movie-filters-span {
+.movie-filters__span {
   color: black;
   margin: auto 0;
 }
 
-.filters-apply-btn {
+.movie-filters__apply-btn {
   margin-top: 1rem;
   font-weight: 500;
   padding: 10px 16px;

@@ -1,4 +1,4 @@
-.modal-overlay {
+.modal__overlay {
   position: fixed;
   inset: 0;
   background: rgba(0, 0, 0, 0.5);
@@ -11,7 +11,7 @@
   transition: visibility 0.5s, opacity 0.5s linear;
 }
 
-.modal-overlay.open {
+.modal__overlay.modal__overlay_open {
   opacity: 1;
   visibility: visible;
   display: flex;
@@ -27,14 +27,14 @@
   position: relative;
 }
 
-.modal-buttons {
+.modal__buttons {
   margin-top: 20px;
   display: flex;
   justify-content: center;
   gap: 15px;
 }
 
-.modal-buttons button {
+.modal__button {
   padding: 8px 16px;
   cursor: pointer;
   font-weight: 600;
@@ -42,21 +42,21 @@
   border-radius: 6px;
 }
 
-.modal-buttons button:first-child {
+.modal__button-confirm {
   background: #ee3465;
   color: white;
 }
 
-.modal-buttons button:last-child {
+.modal__button-cancel {
   background: black;
   color: white;
 }
 
-.modal-title {
+.modal__title {
   color: black;
 }
 
-.popup__close {
+.modal__button-close {
   position: absolute;
   right: -40px;
   top: -40px;
@@ -69,7 +69,7 @@
 }
 
 @media screen and (max-width: 767px) {
-  .popup__close {
+  .modal__button-close{
     width: 20px;
     height: 20px;
     right: 10px;
@@ -79,7 +79,7 @@
   }
 }
 
-.popup__close:hover {
+.modal__button-close:hover {
   opacity: 0.8;
   transition: opacity 0.2s linear;
   cursor: pointer;

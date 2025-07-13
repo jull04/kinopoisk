@@ -2,7 +2,7 @@ import "./MoviesCardList.css";
 import { useEffect, useState, useRef, useCallback } from "react";
 import { useLocation, useSearchParams } from "react-router-dom";
 import Preloader from "../Preloader/Preloader";
-import { kinopoiskApi } from "../../api/kinopoiskApi";
+import { kinopoiskApi } from "../../utils/kinopoiskApi";
 import MovieCard from "../MovieCard/MovieCard";
 import ConfirmModal from "../ConfirmModal/ConfirmModal";
 import MovieFilters from "../MovieFilters/MovieFilters";
