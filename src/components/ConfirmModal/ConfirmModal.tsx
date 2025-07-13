@@ -19,9 +19,9 @@ const ConfirmModal = ({ open, onConfirm, onCancel, title }: ConfirmModalProps) =
 
   return (
     <div
-      className={`modal__overlay ${open ? 'modal__overlay_open' : ''}`}
+      className={`modal__overlay ${open ? 'modal__overlay_open' : ''}`} onClick={onCancel}
     >
-      <div className="modal">
+      <div className="modal" onClick={(e) => e.stopPropagation()}>
         <button
           type="button"
           className="modal__button-close"
