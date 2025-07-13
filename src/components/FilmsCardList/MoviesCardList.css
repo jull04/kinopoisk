@@ -1,0 +1,17 @@
+.movie-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, 225px);
+  grid-gap: 20px;
+  padding: 60px;
+  justify-content: center;
+}
+
+@media (max-width: 768px) {
+  .movie-grid {
+    padding: 30px;
+  }
+}
+
+.movie__empty-message {
+  text-align: center;
+}

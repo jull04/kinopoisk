@@ -1,0 +1,73 @@
+.movie-card {
+  width: 225px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  border-radius: 10px;
+}
+
+.movie-card:hover {
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+.movie-card__link {
+  color: white;
+  text-decoration: none;
+}
+
+.card__title {
+  min-height: 32px;
+  font-size: 14px;
+  margin: 0 0 5px;
+  text-decoration: none;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.card__info {
+  padding: 10px;
+  text-align: center;
+}
+
+.card__meta {
+  font-size: 12px;
+  color: #777;
+  margin: 5px auto;
+}
+
+.movie-card img {
+  width: 100%;
+  min-height: 337px;
+  object-fit: cover;
+  border-radius: 10px 10px 0 0;
+}
+
+.heart-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  border: none;
+  cursor: pointer;
+  background-image: url(../../images/like.svg);
+  width: 40px;
+  height: 40px;
+  background-repeat: no-repeat;
+  background-color: transparent;
+  padding: 0;
+  background-size: cover;
+}
+
+.heart-btn:hover {
+  opacity: 0.8;
+}
+
+.heart-btn_active {
+  background-image: url(../../images/like-active.svg);
+}
+
+.heart-btn_active:hover {
+  opacity: 0.8;
+}

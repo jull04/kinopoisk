@@ -1,0 +1,86 @@
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+  opacity: 0;
+  visibility: hidden;
+  transition: visibility 0.5s, opacity 0.5s linear;
+}
+
+.modal-overlay.open {
+  opacity: 1;
+  visibility: visible;
+  display: flex;
+}
+
+.modal {
+  background: white;
+  padding: 20px 30px;
+  border-radius: 10px;
+  text-align: center;
+  max-width: 400px;
+  width: 100%;
+  position: relative;
+}
+
+.modal-buttons {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+}
+
+.modal-buttons button {
+  padding: 8px 16px;
+  cursor: pointer;
+  font-weight: 600;
+  border: none;
+  border-radius: 6px;
+}
+
+.modal-buttons button:first-child {
+  background: #ee3465;
+  color: white;
+}
+
+.modal-buttons button:last-child {
+  background: black;
+  color: white;
+}
+
+.modal-title {
+  color: black;
+}
+
+.popup__close {
+  position: absolute;
+  right: -40px;
+  top: -40px;
+  border: none;
+  background: transparent;
+  background-image: url(../../images/close.svg);
+  width: 32px;
+  height: 32px;
+  background-repeat: no-repeat;
+}
+
+@media screen and (max-width: 767px) {
+  .popup__close {
+    width: 20px;
+    height: 20px;
+    right: 10px;
+    top: -36px;
+    background-size: contain;
+    background-repeat: no-repeat;
+  }
+}
+
+.popup__close:hover {
+  opacity: 0.8;
+  transition: opacity 0.2s linear;
+  cursor: pointer;
+}
