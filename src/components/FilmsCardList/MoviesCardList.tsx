@@ -5,7 +5,6 @@ import Preloader from "../Preloader/Preloader";
 import { kinopoiskApi } from "../../utils/kinopoiskApi";
 import MovieCard from "../MovieCard/MovieCard";
 import ConfirmModal from "../ConfirmModal/ConfirmModal";
-import MovieFilters from "../MovieFilters/MovieFilters";
 
 type Movie = {
   id: string;
@@ -29,23 +28,34 @@ const MoviesCardList = () => {
   const { pathname } = useLocation();
   const [searchParams] = useSearchParams();
 
-  useEffect(() => {
-    if (pathname === "/") {
-      const cached = localStorage.getItem("movies");
-      if (cached && !searchParams.toString()) {
-        setMovies(JSON.parse(cached));
-        page.current = Math.ceil(JSON.parse(cached).length / 50) + 1;
-      } else {
-        setMovies([]);
-        page.current = 1;
-        fetchMovies(page.current);
-      }
+  //отображение фильмов
+  const loadCachedMovies = () => {
+    const cached = localStorage.getItem("movies");
+    if (cached && !searchParams.toString()) {
+      const parsed = JSON.parse(cached);
+      setMovies(parsed);
+      page.current = Math.ceil(parsed.length / 50) + 1;
     } else {
-      const saved = JSON.parse(localStorage.getItem("savedMovies") || "[]");
-      setSavedMovies(saved);
+      setMovies([]);
+      page.current = 1;
+      fetchMovies(1);
     }
-  }, [pathname, searchParams]);
+  };
+  
+  const loadSavedMovies = () => {
+    const saved = JSON.parse(localStorage.getItem("savedMovies") || "[]");
+    setSavedMovies(saved);
+  };
 
+  useEffect(() => {
+    if (pathname === "/") loadCachedMovies();
+  }, [pathname, searchParams]);
+  
+  useEffect(() => {
+    if (pathname === "/saved-movies") loadSavedMovies();
+  }, [pathname]);
+
+  //запрос к API
   const fetchMovies = async (pageNumber: number) => {
     if (loading) return;
     setLoading(true);
@@ -55,10 +65,10 @@ const MoviesCardList = () => {
         limit: 50,
         sortField: "rating.kp",
         sortType: -1,
-        "rating.kp": `${searchParams.get("ratingMin") || 6}-${
+        "rating.kp": `${searchParams.get("ratingMin") || 0}-${
           searchParams.get("ratingMax") || 10
         }`,
-        year: `${searchParams.get("yearFrom") || 2000}-${
+        year: `${searchParams.get("yearFrom") || 1900}-${
           searchParams.get("yearTo") || 2025
         }`,
         notNullFields: ["name", "rating.kp", "poster.url"],
@@ -104,6 +114,7 @@ const MoviesCardList = () => {
     [loading, pathname]
   );
 
+  //сохраниение и удаление фильмов
   const handleSaveMovie = (movieId: string) => {
     const movie = movies.find((m) => m.id === movieId);
     if (movie) {
@@ -163,20 +174,18 @@ const MoviesCardList = () => {
   return (
     <section>
       <ConfirmModal
-  open={confirmOpen || showDeleteModal}
-  onConfirm={confirmOpen ? handleConfirmSave : confirmDeleteMovie}
-  onCancel={
-    confirmOpen
-      ? handleCancelSave
-      : () => {
-          setMovieToDelete(null);
-          setShowDeleteModal(false);
+        open={confirmOpen || showDeleteModal}
+        onConfirm={confirmOpen ? handleConfirmSave : confirmDeleteMovie}
+        onCancel={
+          confirmOpen
+            ? handleCancelSave
+            : () => {
+                setMovieToDelete(null);
+                setShowDeleteModal(false);
+              }
         }
-  }
-  title={confirmOpen ? "Добавить в избранное?" : "Удалить из избранного?"}
-/>
-
-      {pathname === "/" && <MovieFilters />}
+        title={confirmOpen ? "Добавить в избранное?" : "Удалить из избранного?"}
+      />
 
       <div className="movie-grid">
         {pathname === "/" && (

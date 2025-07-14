@@ -40,7 +40,6 @@ const MovieFilters = () => {
       setSearchParams(params);
       setShowPopup(false); 
     };
-  
     
     const resetFilters = () => {
       setLocalGenres(defaultGenres);
