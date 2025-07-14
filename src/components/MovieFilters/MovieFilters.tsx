@@ -9,18 +9,18 @@ const MovieFilters = () => {
     const [showPopup, setShowPopup] = useState(false);
   
     const defaultGenres: string[] = [];
-    const defaultRating = { min: 6, max: 10 };
-    const defaultYear = { from: 2000, to: 2025 };
+    const defaultRating = { min: 0, max: 10 };
+    const defaultYear = { from: 1900, to: 2025 };
   
     // Инициализация из searchParams или по умолчанию
     const [localGenres, setLocalGenres] = useState<string[]>(searchParams.getAll('genres') || defaultGenres);
     const [localRating, setLocalRating] = useState({
-      min: Number(searchParams.get('ratingMin')) || defaultRating.min,
-      max: Number(searchParams.get('ratingMax')) || defaultRating.max,
+      min: Number(searchParams.get('ratingMin')) || defaultRating.min.toString(),
+      max: Number(searchParams.get('ratingMax')) || defaultRating.max.toString(),
     });
     const [localYear, setLocalYear] = useState({
-      from: Number(searchParams.get('yearFrom')) || defaultYear.from,
-      to: Number(searchParams.get('yearTo')) || defaultYear.to,
+      from: Number(searchParams.get('yearFrom')) || defaultYear.from.toString(),
+      to: Number(searchParams.get('yearTo')) || defaultYear.to.toString(),
     });
   
     const toggleGenre = (genre: string) => {
@@ -32,16 +32,16 @@ const MovieFilters = () => {
     const applyFilters = () => {
       const params = new URLSearchParams();
       localGenres.forEach((g) => params.append('genres', g));
-      params.set('ratingMin', localRating.min.toString());
-      params.set('ratingMax', localRating.max.toString());
-      params.set('yearFrom', localYear.from.toString());
-      params.set('yearTo', localYear.to.toString());
+      params.set('ratingMin', localRating.min ? Number(localRating.min).toString() : defaultRating.min.toString());
+      params.set('ratingMax', localRating.max ? Number(localRating.max).toString() : defaultRating.max.toString());
+      params.set('yearFrom', localYear.from ? Number(localYear.from).toString() : defaultYear.from.toString());
+      params.set('yearTo', localYear.to ? Number(localYear.to).toString() : defaultYear.to.toString());
   
       setSearchParams(params);
       setShowPopup(false); 
     };
   
-    // Новая функция сброса фильтров
+    
     const resetFilters = () => {
       setLocalGenres(defaultGenres);
       setLocalRating(defaultRating);
@@ -84,10 +84,10 @@ const MovieFilters = () => {
                 className="movie-filters__input-number" 
                 type="number"
                 value={localRating.min}
-                min={1}
+                min={0}
                 max={10}
                 onChange={(e) =>
-                  setLocalRating({ ...localRating, min: +e.target.value })
+                  setLocalRating({ ...localRating, min: e.target.value })
                 }
               />
               <span className="movie-filters__span">-</span>
@@ -95,10 +95,10 @@ const MovieFilters = () => {
                 className="movie-filters__input-number" 
                 type="number"
                 value={localRating.max}
-                min={1}
+                min={0}
                 max={10}
                 onChange={(e) =>
-                  setLocalRating({ ...localRating, max: +e.target.value })
+                  setLocalRating({ ...localRating, max: e.target.value })
                 }
               />
             </fieldset>
@@ -109,10 +109,10 @@ const MovieFilters = () => {
                 className="movie-filters__input-number" 
                 type="number"
                 value={localYear.from}
-                min={1990}
+                min={1900}
                 max={2025}
                 onChange={(e) =>
-                  setLocalYear({ ...localYear, from: +e.target.value })
+                  setLocalYear({ ...localYear, from: e.target.value })
                 }
               />
               <span className="movie-filters__span">-</span>
@@ -120,10 +120,10 @@ const MovieFilters = () => {
                 className="movie-filters__input-number" 
                 type="number"
                 value={localYear.to}
-                min={1990}
+                min={1900}
                 max={2025}
                 onChange={(e) =>
-                  setLocalYear({ ...localYear, to: +e.target.value })
+                  setLocalYear({ ...localYear, to: e.target.value })
                 }
               />
             </fieldset>
